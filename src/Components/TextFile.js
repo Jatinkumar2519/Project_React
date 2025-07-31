@@ -1,11 +1,19 @@
-import React from 'react'
+import React,{use, useState} from 'react'
 
-export default function TextFile(){
+export default function TextFile(props){
+    const [text,setText] = useState("Enter text Here");
+    const handleUpCase = () =>{
+        setText(text.toUpperCase());
+    }
+    const handleOnChange = (event) =>{
+        setText(event.target.value);
+    }
     return(
         <div>
-            <div class="mb-3">
-            <label for="TextFile" class="form-label">Example textarea</label>
-            <textarea class="form-control" id="TextFile" rows="3"></textarea>
+            <div className="mb-3">
+            <h1>{props.heading}</h1>
+            <textarea className="form-control" value={text} onChange={handleOnChange}  id="TextFile" rows="5"></textarea>
+            <button style={{marginTop : "10px"}}  type="button" onClick={handleUpCase}  className="btn btn-primary">Convert to upper case</button>
             </div>
         </div>
     )
