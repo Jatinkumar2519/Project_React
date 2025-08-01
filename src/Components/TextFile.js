@@ -1,4 +1,4 @@
-import React, { use, useState } from 'react'
+import React, {useState } from 'react'
 
 export default function TextFile(props) {
     const [text, setText] = useState("Enter text Here");
@@ -20,11 +20,17 @@ export default function TextFile(props) {
         }
         setText(str);
     }
+    const handleClearText = () =>{
+        setText("");
+    }
     const getCountWords = () => {
         return text.split(" ").length - 1;
     }
     const getLengthOfText = () => {
         return text.length;
+    }
+    const getTimeToRead = () => {
+        return text.length * 0.008;
     }
     const handleOnChange = (event) => {
         setText(event.target.value);
@@ -38,12 +44,14 @@ export default function TextFile(props) {
                     <button style={{ marginTop: "10px", fontFamily: "cursive" }} type="button" onClick={handleUpCase} className="btn btn-primary">Convert to upper case</button>
                     <button style={{ marginTop: "10px", marginLeft: "7px", fontFamily: "cursive" }} type="button" onClick={handleDownCase} className="btn btn-primary">Convert to lower case</button>
                     <button style={{ marginTop: "10px", marginLeft: "7px", fontFamily: "cursive" }} type="button" onClick={handleCamelCase} className="btn btn-primary">Convert to Camel case</button>
+                    <button style={{ marginTop: "10px", marginLeft: "7px", fontFamily: "cursive" }} type="button" onClick={handleClearText} className="btn btn-primary">Clear Text</button>
                 </div>
             </div>
-            <div>
+            <div className='container'>
                 <h1 style={{ fontFamily: "cursive" }}>Text Summery</h1>
-                <h5 style={{ fontFamily: "cursive" }}>Number of Words : {getCountWords()}</h5>
-                <h5 style={{ fontFamily: "cursive" }}>Length of words : {getLengthOfText()}</h5>
+                <h5 style={{ fontFamily: "cursive" }}>Number Of Words : {getCountWords()}</h5>
+                <h5 style={{ fontFamily: "cursive" }}>Length Of words : {getLengthOfText()}</h5>
+                <h5 style={{ fontFamily: "cursive" }}>Approx. Time To Read : {getTimeToRead()} sec.</h5>
             </div>
         </>
     )
