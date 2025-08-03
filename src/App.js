@@ -5,8 +5,7 @@ import TextFile from './Components/TextFile';
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
-  Link
+  Route
 } from 'react-router-dom';
 
 function App() {
@@ -28,8 +27,8 @@ function App() {
         <Navbar name="Jatin" mood={mood} toggle={toggle} />
         <div className="container">
           <Routes>
-            <Route path="/about" element={<About />} />
-            <Route path="/" element={<TextFile heading="Heyy enter here some text" mood={mood} />} />
+            <Route exact path="/about" element={<About />} />
+            <Route exact path="/" element={<TextFile heading="Heyy enter here some text" mood={mood} />} />
           </Routes>
         </div>
       </Router>
