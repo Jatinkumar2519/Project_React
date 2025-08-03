@@ -1,14 +1,38 @@
+import React, { useState } from 'react';
 import About from './Components/About';
 import Navbar from './Components/Navbar';
-// import TextFile from './Components/TextFile';
+import TextFile from './Components/TextFile';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from 'react-router-dom';
+
 function App() {
+  const [mood, setMood] = useState("light");
+
+  const toggle = () => {
+    if (mood === "light") {
+      setMood("dark");
+      document.body.style.backgroundColor = 'rgba(49, 47, 54, 1)';
+    } else {
+      setMood("light");
+      document.body.style.backgroundColor = 'white';
+    }
+  };
+
   return (
     <>
-      <Navbar name='Jatin' />
-      <div className='container'>
-        {/* <TextFile heading='Heyy enter here some text'/> */}
-        <About/>
-      </div>
+      <Router>
+        <Navbar name="Jatin" mood={mood} toggle={toggle} />
+        <div className="container">
+          <Routes>
+            <Route path="/about" element={<About />} />
+            <Route path="/" element={<TextFile heading="Heyy enter here some text" mood={mood} />} />
+          </Routes>
+        </div>
+      </Router>
     </>
   );
 }
